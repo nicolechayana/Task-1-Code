@@ -17,15 +17,15 @@ data_new <- data %>%
 summary(select(data_new))
 
 #create class bar plot
-tmp <- data_new %>%
-  group_by(Class) %>%
+tmp <- data0 %>%
+  group_by(as.numeric(str_remove_all(vehicle_class,"Class"))) %>%
   summarise(count = n())
 barplot(tmp$count, xlab="Class", ylab="Number of claims")
             
 summary(select(tmp))
 
 #create state pie chart
-tmp2 <- data_new %>%
-  group_by(State) %>%
+tmp2 <- data0 %>%
+  group_by(risk_state_name) %>%
   summarise(count = n())
 pie(tmp2$count,labels=c("ACT","NSW","NT","QLD","SA","TAS","VIC","WA"))
